@@ -1,0 +1,38 @@
+{
+    "name": "anthonyedmonds/laravel-testing-traits",
+    "description": "Make testing easier with this collection of testing traits! ",
+    "keywords": ["laravel", "testing", "phpunit", "traits"],
+    "type": "library",
+    "homepage": "https://github.com/AnthonyEdmonds/laravel-testing-traits",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anthony Edmonds",
+            "email": "contact@anthonyedmonds.me",
+            "homepage": "https://anthonyedmonds.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "laravel/framework": "^11",
+        "phpunit/phpunit": "^11"
+    },
+    "autoload": {
+        "psr-4": {
+            "AnthonyEdmonds\\LaravelTestingTraits\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AnthonyEdmonds\\LaravelTestingTraits\\TestingTraitsServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
