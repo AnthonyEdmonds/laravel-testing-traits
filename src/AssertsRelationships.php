@@ -3,6 +3,7 @@
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\TestCase;
 
 /**
  * Test whether your Model relationships are working properly
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @author Anthony Edmonds
  *
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait AssertsRelationships
 {

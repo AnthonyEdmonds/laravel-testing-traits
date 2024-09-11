@@ -5,6 +5,7 @@ namespace AnthonyEdmonds\LaravelTestingTraits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
+use Illuminate\Foundation\Testing\TestCase;
 
 /**
  * Test your Laravel FormRequests without pulling your hair out!
@@ -13,6 +14,7 @@ use Illuminate\Validation\Validator;
  * @author Anthony Edmonds
  *
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait AssertsFormRequests
 {

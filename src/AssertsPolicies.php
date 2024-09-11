@@ -3,7 +3,11 @@
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Auth\Access\Response;
+use Illuminate\Foundation\Testing\TestCase;
 
+/**
+ * @mixin TestCase
+ */
 trait AssertsPolicies
 {
     protected function assertPolicyAllows(Response $response, string $expectedMessage): void

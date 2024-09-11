@@ -2,6 +2,7 @@
 
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
+use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\HtmlString;
@@ -14,6 +15,7 @@ use Illuminate\View\ComponentAttributeBag;
  *
  * @author Anthony Edmonds
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait SetsViewVariables
 {

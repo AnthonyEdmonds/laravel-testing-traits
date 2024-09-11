@@ -3,6 +3,7 @@
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Support\Collection;
+use Illuminate\Foundation\Testing\TestCase;
 
 /**
  * Test your array of items is in order; simply pass in an array of values
@@ -10,6 +11,7 @@ use Illuminate\Support\Collection;
  * @author Anthony Edmonds
  *
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait AssertsOrder
 {

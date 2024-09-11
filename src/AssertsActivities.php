@@ -3,6 +3,7 @@
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\TestCase;
 
 /**
  * Assert whether an activity has been logged for the given subject
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @author Anthony Edmonds
  *
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait AssertsActivities
 {

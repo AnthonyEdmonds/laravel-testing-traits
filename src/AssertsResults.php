@@ -3,6 +3,7 @@
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Support\Collection;
+use Illuminate\Foundation\Testing\TestCase;
 
 /**
  * Assert that a given collection contains (and / or does not contain) a set of expected (and / or unexpected) data
@@ -10,6 +11,7 @@ use Illuminate\Support\Collection;
  * @author Anthony Edmonds
  *
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait AssertsResults
 {

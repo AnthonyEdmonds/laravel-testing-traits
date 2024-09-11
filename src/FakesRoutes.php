@@ -2,6 +2,7 @@
 
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
+use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Routing\Route;
 use ReflectionClass;
 
@@ -10,6 +11,7 @@ use ReflectionClass;
  *
  * @author Anthony Edmonds
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait FakesRoutes
 {

@@ -2,6 +2,8 @@
 
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
+use Illuminate\Foundation\Testing\TestCase;
+
 /**
  * Test whether your Laracasts\Flash messages are working properly
  * Simply include this trait on your test and call the assert methods.
@@ -9,6 +11,7 @@ namespace AnthonyEdmonds\LaravelTestingTraits;
  * @author Anthony Edmonds
  *
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait AssertsFlashMessages
 {
@@ -18,12 +21,12 @@ trait AssertsFlashMessages
             ->messages->where('message', $message)
             ->first();
 
-        $this->assertNotNull($flash);
+        $this->assertNotNull($flash, "\"$message\" was not flashed");
 
         $this->assertEquals($message, $flash->message);
 
         if ($level !== null) {
-            $this->assertEquals($level, $flash->level);
+            $this->assertEquals($level, $flash->level, "Expected \"$level\", received \"$flash->level\"");
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Foundation\Testing\TestCase;
 
 /**
  * Test that your Laravel ValidationRules work as expected
@@ -10,6 +11,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
  * @author Anthony Edmonds
  *
  * @link https://github.com/AnthonyEdmonds
+ * @mixin TestCase
  */
 trait AssertsValidationRules
 {
