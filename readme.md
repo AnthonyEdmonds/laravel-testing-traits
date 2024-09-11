@@ -6,7 +6,7 @@ Make testing easier with this collection of testing traits!
 
 1. Add the library using Composer:
     ```bash
-   composer require anthonyedmonds\laravel-database-log
+   composer require anthonyedmonds\laravel-database-log --dev
    ```
 2. The service provider will be automatically registered. If required, you can manually register the service provider by adding it to your bootstrap/providers.php:
    ```php
@@ -48,6 +48,8 @@ Make testing easier with this collection of testing traits!
 | AssertsRelationships   | Test whether a Model relationship loads as expected                         | assertBelongsTo, assertBelongsToMany, assertHasMany, assertHasOne                      |
 | AssertsResults         | Test whether a Collection contains the expected values                      | assertResultsMatch, assertResultsContain, assertResultsDontContain, assertResultsCount |
 | AssertsValidationRules | Test whether a custom Rule works as expected                                | assertRulesPasses, assertRuleFails                                                     |
+| FakesRoutes            | Fool Laravel into thinking you are on a specific route                      | fakeRoute                                                                              |
 | GetsRawCsvs            | Process a raw CSV into an array for parsing                                 | processRawCsv                                                                          |
 | GetsStreamedResponses  | Intercept a StreamedResponse for testing files                              | getStreamedResponse                                                                    |
+| SetsViewVariables      | Set View variables for testing rendered blades, such as with Mojito         | setRequestOld, setViewAttributes, setViewErrors, setViewSlot                           |
 | SignsInUsers           | Sign a User in with relevant Spatie/LaravelPermission Roles and Permissions | signIn, signInAs, signInWithRole, signInWithPermission                                 |
