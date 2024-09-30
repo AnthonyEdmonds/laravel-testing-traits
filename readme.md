@@ -6,7 +6,7 @@ Make testing easier with this collection of testing traits!
 
 1. Add the library using Composer:
     ```bash
-   composer require anthonyedmonds\laravel-testing-traits --dev
+   composer require anthonyedmonds/laravel-testing-traits --dev
    ```
 2. The service provider will be automatically registered. If required, you can manually register the service provider by adding it to your bootstrap/providers.php:
    ```php
