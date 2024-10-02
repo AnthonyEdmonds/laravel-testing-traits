@@ -21,6 +21,7 @@ trait AssertsActivities
         ?string $description = null,
         ?array $attributes = null,
         ?array $old = null,
+        ?array $extras = null,
     ): void {
         $activity = $subject->activities->where('event', $event)->last();
 
@@ -36,6 +37,12 @@ trait AssertsActivities
 
         if ($old !== null) {
             $this->assertEquals($old, $activity->getExtraProperty('old'));
+        }
+
+        if ($extras !== null) {
+            foreach ($extras as $key => $value) {
+                $this->assertEquals($value, $activity->getExtraProperty($key));
+            }
         }
     }
 }
