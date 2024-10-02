@@ -17,13 +17,15 @@ trait AssertsActivities
 {
     public function assertActivity(
         Model $subject,
-        string $event,
+        ?string $event = null,
         ?string $description = null,
         ?array $attributes = null,
         ?array $old = null,
         ?array $extras = null,
     ): void {
-        $activity = $subject->activities->where('event', $event)->last();
+        $activity = $event !== null
+            ? $subject->activities->where('event', $event)->last()
+            : $subject->activities->where('description', $description)->last();
 
         $this->assertNotNull($activity);
 
