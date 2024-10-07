@@ -17,9 +17,14 @@ trait AssertsFlashMessages
 {
     public function assertFlashed(string $message, ?string $level = null): void
     {
-        $flash = flash()
-            ->messages->where('message', $message)
-            ->first();
+        $flash = flash();
+
+        if (is_a($flash, 'Laracasts\\Flash\\FlashNotifier') === true) {
+            $flash = $flash
+                ->messages
+                ->where('message', $message)
+                ->first();
+        }
 
         $this->assertNotNull($flash, "\"$message\" was not flashed");
 
