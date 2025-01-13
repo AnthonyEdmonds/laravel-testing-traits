@@ -10,7 +10,7 @@ trait AssertsViews
 
     public function assertViewRenders(
         View $view,
-        array $attributes,
+        array $attributes = [],
         array $errors = [],
         array $old = [],
         array $slots = [],
