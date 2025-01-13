@@ -9,6 +9,7 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\ComponentAttributeBag;
+use Symfony\Component\HttpFoundation\InputBag;
 
 /**
  * Configure the global variables exposed when rendering a view
@@ -20,15 +21,17 @@ use Illuminate\View\ComponentAttributeBag;
 trait SetsViewVariables
 {
     /* If you know how to set the Request Session, let me know. */
-    public function setRequestOld(array $old): void
+    public function setRequestOld(array $old, array $cookies = []): void
     {
-        $mock = $this->partialMock(Request::class, function ($mock) use ($old) {
+        $mock = $this->partialMock(Request::class, function ($mock) use ($cookies, $old) {
             foreach ($old as $key => $value) {
                 $mock
                     ->expects('old')
                     ->withSomeOfArgs($key)
                     ->andReturns($value);
             }
+
+            $mock->cookies = new InputBag($cookies);
         });
 
         app()->bind('request', function () use ($mock) {
