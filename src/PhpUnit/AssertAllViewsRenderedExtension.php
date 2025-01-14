@@ -1,0 +1,28 @@
+<?php
+
+namespace AnthonyEdmonds\LaravelTestingTraits\PhpUnit;
+
+use PHPUnit\Runner\Extension\Extension;
+use PHPUnit\Runner\Extension\Facade;
+use PHPUnit\Runner\Extension\ParameterCollection;
+use PHPUnit\TextUI\Configuration\Configuration;
+
+class AssertAllViewsRenderedExtension implements Extension
+{
+    public function bootstrap(
+        Configuration $configuration,
+        Facade $facade,
+        ParameterCollection $parameters,
+    ): void {
+        $facade->registerSubscribers(
+            new StartLoggingViews(),
+            new RecordRenderedViews(),
+            new FinishLoggingViews(),
+        );
+    }
+
+    public static function path(): string
+    {
+        return __DIR__ . DIRECTORY_SEPARATOR . 'viewlist.csv';
+    }
+}

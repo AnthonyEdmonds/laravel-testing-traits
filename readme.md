@@ -54,3 +54,19 @@ Make testing easier with this collection of testing traits!
 | GetsStreamedResponses  | Intercept a StreamedResponse for testing files                              | getStreamedResponse                                                                    |
 | SetsViewVariables      | Set View variables for testing rendered blades, such as with Mojito         | setRequestOld, setViewAttributes, setViewErrors, setViewSlot                           |
 | SignsInUsers           | Sign a User in with relevant Spatie/LaravelPermission Roles and Permissions | signIn, signInAs, signInWithRole, signInWithPermission                                 |
+
+## PHPUnit Extension
+
+An extension is provided for asserting that all blade files in your project have been rendered successfully.
+
+When used in conjunction with `assertViewRenders`, an check will be performed at the end of all unit tests to ensure that all blade files within `resources/views` have been rendered at least once.
+
+```xml
+<phpunit>
+    <extensions>
+        <bootstrap class="AnthonyEdmonds\LaravelTestingTraits\PhpUnit\AssertAllViewsRenderedExtension"/>
+    </extensions>
+</phpunit>
+```
+
+The results are output into the terminal and recorded in `.phpunit.cache/view-render-results.json`.
