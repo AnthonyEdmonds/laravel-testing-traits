@@ -59,14 +59,14 @@ Make testing easier with this collection of testing traits!
 
 An extension is provided for asserting that all blade files in your project have been rendered successfully.
 
-When used in conjunction with `assertViewRenders`, an assertion will be performed at the end of all unit tests to ensure that all blade files within `resources/views` has been directly rendered at least once.
+When used in conjunction with `assertViewRenders`, an check will be performed at the end of all unit tests to ensure that all blade files within `resources/views` have been rendered at least once.
 
 ```xml
 <phpunit>
     <extensions>
-        <bootstrap class="AnthonyEdmonds\LaravelTestingTraits\PhpUnit\TestingTraitsExtension"/>
+        <bootstrap class="AnthonyEdmonds\LaravelTestingTraits\PhpUnit\AssertAllViewsRenderedExtension"/>
     </extensions>
 </phpunit>
 ```
 
-Might not detect views rendered by other views...
+The results are output into the terminal and recorded in `.phpunit.cache/view-render-results.json`.

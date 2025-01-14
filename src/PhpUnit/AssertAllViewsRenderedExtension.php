@@ -16,7 +16,13 @@ class AssertAllViewsRenderedExtension implements Extension
     ): void {
         $facade->registerSubscribers(
             new StartLoggingViews(),
+            new RecordRenderedViews(),
             new FinishLoggingViews(),
         );
+    }
+
+    public static function path(): string
+    {
+        return __DIR__ . DIRECTORY_SEPARATOR . 'viewlist.csv';
     }
 }
