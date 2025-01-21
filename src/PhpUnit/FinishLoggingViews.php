@@ -10,8 +10,10 @@ class FinishLoggingViews implements FinishedSubscriber
     public function notify(Finished $event): void
     {
         $raw = file_get_contents(AssertAllViewsRenderedExtension::path()) ?: '';
-        $actual = array_filter(
-            explode(',', $raw),
+        $actual = array_unique(
+            array_filter(
+                explode(',', $raw),
+            ),
         );
 
         $expected = [];
@@ -22,9 +24,10 @@ class FinishLoggingViews implements FinishedSubscriber
             '',
         );
 
+        $rendered = array_intersect($actual, $expected);
         $unrendered = array_diff($expected, $actual);
         $total = count($expected);
-        $passed = count($actual);
+        $passed = count($rendered);
         $failed = count($unrendered);
         $percent = ceil(($passed / $total) * 100);
         $resultsPath = $this->resultsPath();
@@ -33,7 +36,7 @@ class FinishLoggingViews implements FinishedSubscriber
             'failed' => $failed,
             'passed' => $passed,
             'percent' => $percent,
-            'rendered' => $actual,
+            'rendered' => $rendered,
             'result' => $failed === 0 ? 'Pass' : 'Fail',
             'total' => $total,
             'unrendered' => $unrendered,
