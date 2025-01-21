@@ -36,10 +36,11 @@ class FinishLoggingViews implements FinishedSubscriber
             'failed' => $failed,
             'passed' => $passed,
             'percent' => $percent,
-            'rendered' => $rendered,
+            'rendered' => array_values($rendered),
             'result' => $failed === 0 ? 'Pass' : 'Fail',
+            'state' => $failed === 0 ? 1 : -1,
             'total' => $total,
-            'unrendered' => $unrendered,
+            'unrendered' => array_values($unrendered),
         ]));
 
         echo $failed > 0
