@@ -2,7 +2,6 @@
 
 namespace AnthonyEdmonds\LaravelTestingTraits\PhpUnit;
 
-
 use PHPUnit\Event\Test\Prepared;
 use PHPUnit\Event\Test\PreparedSubscriber;
 
