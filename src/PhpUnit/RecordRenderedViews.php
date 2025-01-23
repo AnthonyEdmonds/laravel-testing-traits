@@ -2,14 +2,15 @@
 
 namespace AnthonyEdmonds\LaravelTestingTraits\PhpUnit;
 
-use PHPUnit\Event\Test\Prepared;
-use PHPUnit\Event\Test\PreparedSubscriber;
+use Illuminate\Support\Facades\Event;
+use PHPUnit\Event\Test\BeforeFirstTestMethodCalled;
+use PHPUnit\Event\Test\BeforeFirstTestMethodCalledSubscriber;
 
-class RecordRenderedViews implements PreparedSubscriber
+class RecordRenderedViews implements BeforeFirstTestMethodCalledSubscriber
 {
-    public function notify(Prepared $event): void
+    public function notify(BeforeFirstTestMethodCalled $event): void
     {
-        app('events')->listen('composing:*', function (string $view) {
+        Event::listen('composing:*', function (string $view) {
             if (str_contains($view, '::') === false) {
                 file_put_contents(
                     AssertAllViewsRenderedExtension::path(),
