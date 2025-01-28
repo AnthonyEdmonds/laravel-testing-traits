@@ -36,6 +36,7 @@ trait SetsViewVariables
             $mock->cookies = new InputBag($cookies);
             $mock->headers = new HeaderBag();
             $mock->server = new ServerBag();
+            $mock->query = new InputBag();
         });
 
         app()->bind('request', function () use ($mock) {
