@@ -11,6 +11,7 @@ use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\ComponentAttributeBag;
 use Symfony\Component\HttpFoundation\HeaderBag;
 use Symfony\Component\HttpFoundation\InputBag;
+use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\ServerBag;
 
 /**
@@ -37,6 +38,7 @@ trait SetsViewVariables
             $mock->headers = new HeaderBag();
             $mock->server = new ServerBag();
             $mock->query = new InputBag();
+            $mock->attributes = new ParameterBag();
         });
 
         app()->bind('request', function () use ($mock) {
