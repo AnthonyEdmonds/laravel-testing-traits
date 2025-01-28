@@ -39,6 +39,7 @@ trait SetsViewVariables
             $mock->server = new ServerBag();
             $mock->query = new InputBag();
             $mock->attributes = new ParameterBag();
+            $mock->request = new InputBag();
         });
 
         app()->bind('request', function () use ($mock) {
