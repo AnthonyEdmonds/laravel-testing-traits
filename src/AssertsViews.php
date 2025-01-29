@@ -19,6 +19,10 @@ trait AssertsViews
         $this->setViewErrors($errors);
         $this->setRequestOld($old);
 
+        foreach ($attributes as $key => $value) {
+            $view->with($key, $value);
+        }
+        
         foreach ($slots as $slot) {
             $this->setViewSlot(
                 $slot['name'] ?? '',
