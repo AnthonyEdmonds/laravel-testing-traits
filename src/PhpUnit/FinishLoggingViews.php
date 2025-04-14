@@ -58,7 +58,10 @@ class FinishLoggingViews implements FinishedSubscriber
         $paths = scandir($basepath);
 
         foreach ($paths as $filename) {
-            if (in_array($filename, ['.', '..', 'vendor']) === true) {
+            if (
+                in_array($filename, ['.', '..']) === true
+                || AssertAllViewsRenderedExtension::isExcluded($filename) === true
+            ) {
                 continue;
             }
 

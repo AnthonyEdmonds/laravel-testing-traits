@@ -25,4 +25,17 @@ class AssertAllViewsRenderedExtension implements Extension
     {
         return __DIR__ . DIRECTORY_SEPARATOR . 'viewlist.csv';
     }
+
+    public static function isExcluded(string $view): bool
+    {
+        $exclude = config('testing-traits.exclude_views', []);
+
+        foreach ($exclude as $term) {
+            if (str_contains($view, $term) === true) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
