@@ -58,10 +58,7 @@ class FinishLoggingViews implements FinishedSubscriber
         $paths = scandir($basepath);
 
         foreach ($paths as $filename) {
-            if (
-                in_array($filename, ['.', '..']) === true
-                || AssertAllViewsRenderedExtension::isExcluded($filename) === true
-            ) {
+            if (in_array($filename, ['.', '..']) === true) {
                 continue;
             }
 
@@ -71,7 +68,13 @@ class FinishLoggingViews implements FinishedSubscriber
                 $this->scanDirectory($filepath, $expected, "$prefix$filename.");
 
             } elseif (is_file($filepath) === true) {
-                $expected[] = $prefix . str_replace('.blade.php', '', $filename);
+                $name = $prefix . str_replace('.blade.php', '', $filename);
+
+                if (AssertAllViewsRenderedExtension::isExcluded($name) === true) {
+                    continue;
+                }
+
+                $expected[] = $name;
             }
         }
     }
