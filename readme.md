@@ -23,6 +23,11 @@ Make testing easier with this collection of testing traits!
    Then update the config to point to your model:
    ```php
    return [
+       'exclude_views' => [
+           '::',
+           'errors.',
+           'vendor.',
+       ],
        'user_model' => \App\Models\User::class,
    ];
    ```
@@ -70,3 +75,5 @@ When used in conjunction with `assertViewRenders`, an check will be performed at
 ```
 
 The results are output into the terminal and recorded in `.phpunit.cache/view-render-results.json`.
+
+You can configure which views are excluded from the count by adding wildcards to the `exclude_views` key of the `testing-traits` config file.
