@@ -9,6 +9,6 @@ class StartLoggingViews implements StartedSubscriber
 {
     public function notify(Started $event): void
     {
-        file_put_contents(AssertAllViewsRenderedExtension::path(), '', LOCK_EX);
+        file_put_contents(AssertAllViewsRenderedExtension::renderedPath(), '', LOCK_EX);
     }
 }

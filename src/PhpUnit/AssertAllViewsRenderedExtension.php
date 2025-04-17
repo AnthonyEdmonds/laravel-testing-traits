@@ -21,21 +21,88 @@ class AssertAllViewsRenderedExtension implements Extension
         );
     }
 
-    public static function path(): string
+    // Exclusions
+    public static function exclusions(): array
     {
-        return __DIR__ . DIRECTORY_SEPARATOR . 'viewlist.csv';
+        return self::config()['exclude_views'];
     }
 
-    public static function isExcluded(string $view): bool
+    public static function isExcluded(string $view, ?array $exclusions = null): bool
     {
-        $exclude = config('testing-traits.exclude_views', []);
+        if ($exclusions === null) {
+            $exclusions = self::exclusions();
+        }
 
-        foreach ($exclude as $term) {
+        foreach ($exclusions as $term) {
             if (str_contains($view, $term) === true) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    // Config
+    protected static function config(): array
+    {
+        $defaultConfig = require self::defaultConfigPath();
+        $configPath = self::configPath();
+
+        if (file_exists($configPath) === false) {
+            return $defaultConfig;
+        }
+
+        $config = require $configPath;
+
+        foreach ($defaultConfig as $key => $value) {
+            if (array_key_exists($key, $config) === false) {
+                $config[$key] = $value;
+            }
+        }
+
+        return $config;
+    }
+
+    // Paths
+    public static function configPath(): string
+    {
+        return self::path('config', 'testing-traits.php');
+    }
+
+    public static function defaultConfigPath(): string
+    {
+        return implode(DIRECTORY_SEPARATOR, [
+            __DIR__,
+            '..',
+            'testing-traits.php',
+        ]);
+    }
+
+    public static function renderedPath(): string
+    {
+        return self::path('.phpunit.cache', 'views-rendered.csv');
+    }
+
+    public static function resourcePath(): string
+    {
+        return self::path('resources', 'views');
+    }
+
+    public static function resultsPath(): string
+    {
+        return self::path('.phpunit.cache', 'views-results.json');
+    }
+
+    protected static function path(string ...$paths): string
+    {
+        return implode(DIRECTORY_SEPARATOR, [
+            __DIR__,
+            '..',
+            '..',
+            '..',
+            '..',
+            '..',
+            ...$paths,
+        ]);
     }
 }
