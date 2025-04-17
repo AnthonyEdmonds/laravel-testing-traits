@@ -3,15 +3,14 @@
 namespace AnthonyEdmonds\LaravelTestingTraits\PhpUnit;
 
 use Illuminate\Support\Facades\Event;
-use PHPUnit\Event\Test\Prepared;
-use PHPUnit\Event\Test\PreparedSubscriber;
+use PHPUnit\Event\Test\BeforeFirstTestMethodCalled;
+use PHPUnit\Event\Test\BeforeFirstTestMethodCalledSubscriber;
 
-// TODO Facade not registered in global state / isolate
-class RecordRenderedViews implements PreparedSubscriber
+class RecordRenderedViews implements BeforeFirstTestMethodCalledSubscriber
 {
     protected array $exclusions = [];
 
-    public function notify(Prepared $event): void
+    public function notify(BeforeFirstTestMethodCalled $event): void
     {
         $this->exclusions = AssertAllViewsRenderedExtension::exclusions();
 
