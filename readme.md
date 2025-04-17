@@ -53,7 +53,7 @@ Make testing easier with this collection of testing traits!
 | AssertsRelationships   | Test whether a Model relationship loads as expected                         | assertBelongsTo, assertBelongsToMany, assertHasMany, assertHasOne                      |
 | AssertsResults         | Test whether a Collection contains the expected values                      | assertResultsMatch, assertResultsContain, assertResultsDontContain, assertResultsCount |
 | AssertsValidationRules | Test whether a custom Rule works as expected                                | assertRulesPasses, assertRuleFails                                                     |
-| AssertsViews           | Test whether a View renders as expected                                     | assertViewRenders                                                                      |
+| AssertsViews           | Test whether a View renders as expected                                     | assertViewRenders, assertMailRenders                                                   |
 | FakesRoutes            | Fool Laravel into thinking you are on a specific route                      | fakeRoute                                                                              |
 | GetsRawCsvs            | Process a raw CSV into an array for parsing                                 | processRawCsv                                                                          |
 | GetsStreamedResponses  | Intercept a StreamedResponse for testing files                              | getStreamedResponse                                                                    |
