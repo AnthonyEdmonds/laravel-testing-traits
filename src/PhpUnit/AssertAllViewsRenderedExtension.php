@@ -16,7 +16,6 @@ class AssertAllViewsRenderedExtension implements Extension
     ): void {
         $facade->registerSubscribers(
             new StartLoggingViews(),
-            new RecordRenderedViews(),
             new FinishLoggingViews(),
         );
     }
