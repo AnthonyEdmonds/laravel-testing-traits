@@ -9,19 +9,12 @@ class FinishLoggingViews implements FinishedSubscriber
 {
     public function notify(Finished $event): void
     {
-        $raw = file_get_contents(AssertAllViewsRenderedExtension::path()) ?: '';
-        $actual = array_unique(
-            array_filter(
-                explode(',', $raw),
-            ),
-        );
-
+        $actual = $this->getRenderedList();
         $expected = [];
 
         $this->scanDirectory(
-            resource_path('views'),
+            AssertAllViewsRenderedExtension::resourcePath(),
             $expected,
-            '',
         );
 
         $rendered = array_intersect($actual, $expected);
@@ -30,7 +23,7 @@ class FinishLoggingViews implements FinishedSubscriber
         $passed = count($rendered);
         $failed = count($unrendered);
         $percent = ceil(($passed / $total) * 100);
-        $resultsPath = $this->resultsPath();
+        $resultsPath = AssertAllViewsRenderedExtension::resultsPath();
 
         file_put_contents($resultsPath, json_encode([
             'failed' => $failed,
@@ -48,14 +41,21 @@ class FinishLoggingViews implements FinishedSubscriber
             : "All views were rendered; results have been saved in $resultsPath";
     }
 
-    protected function resultsPath(): string
+    protected function getRenderedList(): array
     {
-        return base_path('.phpunit.cache') . DIRECTORY_SEPARATOR . 'view-render-results.json';
+        $raw = file_get_contents(AssertAllViewsRenderedExtension::renderedPath()) ?: '';
+
+        return array_unique(
+            array_filter(
+                explode(',', $raw),
+            ),
+        );
     }
 
-    protected function scanDirectory(string $basepath, array &$expected, string $prefix): void
+    protected function scanDirectory(string $basepath, array &$expected, string $prefix = ''): void
     {
         $paths = scandir($basepath);
+        $exclusions = AssertAllViewsRenderedExtension::exclusions();
 
         foreach ($paths as $filename) {
             if (in_array($filename, ['.', '..']) === true) {
@@ -70,7 +70,7 @@ class FinishLoggingViews implements FinishedSubscriber
             } elseif (is_file($filepath) === true) {
                 $name = $prefix . str_replace('.blade.php', '', $filename);
 
-                if (AssertAllViewsRenderedExtension::isExcluded($name) === true) {
+                if (AssertAllViewsRenderedExtension::isExcluded($name, $exclusions) === true) {
                     continue;
                 }
 
