@@ -3,6 +3,7 @@
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Mail\Mailable;
 
 trait AssertsViews
 {
@@ -34,6 +35,17 @@ trait AssertsViews
         $this->assertIsString(
             $view->render(),
             $view->name() . ' failed to render',
+        );
+    }
+
+    public function assertMailRenders(
+        Mailable $mail,
+    ): void {
+        $content = $mail->content();
+
+        $this->assertIsString(
+            $mail->render(),
+            $content->markdown ?? $content->view . ' failed to render',
         );
     }
 }
