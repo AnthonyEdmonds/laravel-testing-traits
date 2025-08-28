@@ -3,7 +3,9 @@
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Mail\Mailable;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 
 trait AssertsViews
@@ -52,13 +54,17 @@ trait AssertsViews
 
     public function assertNotificationRenders(
         Notification $notification,
+        AnonymousNotifiable|Model|null $notifiable = null,
     ): void {
+        $content = $notifiable === null
+            ? $notification->toMail()
+            : $notification->toMail($notifiable);
+
         $this->assertIsString(
-            $notification
-                ->toMail()
+            $content
                 ->render()
                 ->toHtml(),
-            $notification->toMail()->markdown ?? $notification->toMail()->view . ' failed to render',
+            $content->markdown ?? $content->view . ' failed to render',
         );
     }
 }
