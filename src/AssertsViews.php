@@ -4,6 +4,7 @@ namespace AnthonyEdmonds\LaravelTestingTraits;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Mail\Mailable;
+use Illuminate\Notifications\Notification;
 
 trait AssertsViews
 {
@@ -46,6 +47,17 @@ trait AssertsViews
         $this->assertIsString(
             $mail->render(),
             $content->markdown ?? $content->view . ' failed to render',
+        );
+    }
+
+    public function assertNotificationRenders(
+        Notification $notification,
+    ): void {
+        $this->assertIsString(
+            $notification
+                ->toMail()
+                ->render()
+                ->toHtml(),
         );
     }
 }
