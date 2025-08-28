@@ -58,6 +58,7 @@ trait AssertsViews
                 ->toMail()
                 ->render()
                 ->toHtml(),
+            $notification->toMail()->markdown ?? $notification->toMail()->view . ' failed to render',
         );
     }
 }
