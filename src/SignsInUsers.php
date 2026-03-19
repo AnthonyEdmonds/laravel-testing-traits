@@ -2,6 +2,7 @@
 
 namespace AnthonyEdmonds\LaravelTestingTraits;
 
+use BackedEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,12 +26,12 @@ trait SignsInUsers
         return $this->signIn($user);
     }
 
-    public function signInWithRole(string $role, ?Model $user = null): Model
+    public function signInWithRole(BackedEnum|string $role, ?Model $user = null): Model
     {
         return $this->signIn($user)->assignRole($role);
     }
 
-    public function signInWithPermission(string $permission, ?Model $user = null): Model
+    public function signInWithPermission(BackedEnum|string $permission, ?Model $user = null): Model
     {
         return $this->signIn($user)->givePermissionTo($permission);
     }
