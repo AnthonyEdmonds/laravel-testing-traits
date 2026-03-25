@@ -22,7 +22,7 @@ class FinishLoggingViews implements FinishedSubscriber
         $total = count($expected);
         $passed = count($rendered);
         $failed = count($unrendered);
-        $percent = ceil(($passed / $total) * 100);
+        $percent = (int) floor(($passed / $total) * 100);
         $resultsPath = AssertAllViewsRenderedExtension::resultsPath();
 
         file_put_contents($resultsPath, json_encode([
