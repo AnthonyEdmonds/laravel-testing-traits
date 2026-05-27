@@ -9,6 +9,7 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\ComponentAttributeBag;
+use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\HeaderBag;
 use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -40,6 +41,7 @@ trait SetsViewVariables
             $mock->query = new InputBag();
             $mock->attributes = new ParameterBag();
             $mock->request = new InputBag();
+            $mock->files = new FileBag();
         });
 
         app()->bind('request', function () use ($mock) {
