@@ -16,6 +16,7 @@
     "require": {
         "php": "^8.3",
         "laravel/framework": "^13",
+        "orchestra/testbench": "^11",
         "phpunit/phpunit": "^12"
     },
     "autoload": {

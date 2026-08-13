@@ -45,8 +45,8 @@ Make testing easier with this collection of testing traits!
 
 | Trait                  | Purpose                                                                     | Methods                                                                                |
 |------------------------|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| AssertsActivities      | Test whether a Spatie/ActivityLog has been recorded                         | assertActivity                                                                         |
-| AssetsFlashMessages    | Test whether a Laracasts/Flash message has been set                         | assertFlashed                                                                          |
+| AssertsActivities      | Test whether a Spatie\ActivityLog has been recorded                         | assertActivity                                                                         |
+| AssetsFlashMessages    | Test whether a Laracasts\Flash message has been set                         | assertFlashed                                                                          |
 | AssertsFormRequests    | Test whether a FormRequest validates as expected                            | assertFormRequestPasses, assertFormRequestFails                                        |
 | AssertsOrder           | Test whether a Collection is in order                                       | assertAscending, assertDescending                                                      |
 | AssertsPolicies        | Test whether a Policy works as expected                                     | assertPolicyAllows, assertPolicyDenies                                                 |
@@ -58,7 +58,8 @@ Make testing easier with this collection of testing traits!
 | GetsRawCsvs            | Process a raw CSV into an array for parsing                                 | processRawCsv                                                                          |
 | GetsStreamedResponses  | Intercept a StreamedResponse for testing files                              | getStreamedResponse                                                                    |
 | SetsViewVariables      | Set View variables for testing rendered blades, such as with Mojito         | setRequestOld, setViewAttributes, setViewErrors, setViewSlot                           |
-| SignsInUsers           | Sign a User in with relevant Spatie/LaravelPermission Roles and Permissions | signIn, signInAs, signInWithRole, signInWithPermission                                 |
+| SignsInUsers           | Sign a User in with relevant Spatie\LaravelPermission Roles and Permissions | signIn, signInAs, signInWithRole, signInWithPermission                                 |
+| UsesFaker              | Provide an instance of Faker\Generator                                      | faker                                                                                  |
 
 ## PHPUnit Extension
 
