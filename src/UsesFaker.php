@@ -5,7 +5,7 @@ namespace AnthonyEdmonds\LaravelTestingTraits;
 use Illuminate\Container\Container;
 use Faker\Generator;
 
-class UsesFaker
+trait UsesFaker
 {
     protected function faker(): Generator
     {
