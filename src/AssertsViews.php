@@ -18,10 +18,12 @@ trait AssertsViews
         array $errors = [],
         array $old = [],
         array $slots = [],
+        array $cookies = [],
+        array $server = [],
     ): void {
         $this->setViewAttributes($attributes);
         $this->setViewErrors($errors);
-        $this->setRequestOld($old);
+        $this->setRequestOld($old, $cookies, $server);
 
         foreach ($attributes as $key => $value) {
             $view->with($key, $value);
