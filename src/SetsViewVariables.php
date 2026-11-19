@@ -25,19 +25,22 @@ use Symfony\Component\HttpFoundation\ServerBag;
 trait SetsViewVariables
 {
     /* If you know how to set the Request Session, let me know. */
-    public function setRequestOld(array $old, array $cookies = []): void
-    {
-        $mock = $this->partialMock(Request::class, function ($mock) use ($cookies, $old) {
+    public function setRequestOld(
+        array $old,
+        array $cookies = [],
+        array $server = [],
+    ): void {
+        $mock = $this->partialMock(Request::class, function ($mock) use ($cookies, $old, $server) {
             foreach ($old as $key => $value) {
                 $mock
-                    ->expects('old')
+                    ->shouldReceive('old')
                     ->withSomeOfArgs($key)
                     ->andReturns($value);
             }
 
             $mock->cookies = new InputBag($cookies);
             $mock->headers = new HeaderBag();
-            $mock->server = new ServerBag();
+            $mock->server = new ServerBag($server);
             $mock->query = new InputBag();
             $mock->attributes = new ParameterBag();
             $mock->request = new InputBag();
